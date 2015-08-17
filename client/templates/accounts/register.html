@@ -1,0 +1,50 @@
+<template name="register">
+
+  <div class="col-sm-12 col-md-10 col-md-offset-1">
+    <h2>Register</h2><hr/>
+  
+    <form>
+      <div class="form-inline {{errorClass 'role'}}">
+        <label class="radio">
+          <input type="radio" class="registerType" name="registerType" value="student">
+          Student
+        </label>
+
+        <label class="radio">
+          <input type="radio" class="registerType" name="registerType" value="tutor">
+          Tutor
+        </label>
+        <span class="help-block">{{errorMessage 'role'}}</span>
+      </div>
+      <hr/>
+
+      <div class="form-group {{errorClass 'username'}}">
+        <label for="register-username">Username</label>
+        <input type="text" class="form-control" id="register-username" placeholder="Username">
+        <span class="help-block">{{errorMessage 'username'}}</span>
+      </div>
+
+      <div class="form-group {{errorClass 'email'}}">
+        <label for="register-email">Email Address</label>
+        <input type="email" class="form-control" id="register-email" placeholder="Email">
+        <span class="help-block">{{errorMessage 'email'}}</span>
+      </div>
+
+      <div class="form-group {{errorClass 'password'}}">
+        <label for="register-password">Password</label>
+        <input type="password" class="form-control" id="register-password" placeholder="Password">
+        <span class="help-block">{{errorMessage 'password'}}</span>
+      </div>
+
+      <div class="form-group {{errorClass 'repassword'}}">
+        <label for="register-password-repeat">Comfirm Password</label>
+        <input type="password" class="form-control" id="register-password-repeat" placeholder="Repeat password">
+        <span class="help-block">{{errorMessage 'repassword'}}</span>
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Register"/>
+
+    </form>
+  </div>
+
+</template>
