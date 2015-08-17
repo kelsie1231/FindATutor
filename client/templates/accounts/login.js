@@ -39,8 +39,7 @@ Template.login.events({
       }
       else{
         //successfully login, close the login form
-        $('#overlay').fadeOut(200);
-        $('#loginform').css({'display':'none'});
+        $('#loginform').modal('hide')
 
         Router.go('/');
       }

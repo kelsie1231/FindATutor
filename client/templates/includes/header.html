@@ -17,10 +17,10 @@
 
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <p>{{currentUser.username}} is currently logged in.</p>
-            <a class="btn btn-primary navbar-btn header-btn" id="logout" href="{{pathFor 'logout'}}" role="button">Logout</a>
+            <li><p class="navbar-text">{{currentUser.username}} is currently logged in.</p></li>
+            <li><button class="btn btn-primary navbar-btn header-btn " id="logout" role="button">Logout</button></li>
           {{else}}
-            <a class="btn btn-info navbar-btn header-btn" href="#loginform" id="logintrigger" role="button">Login</a>
+            <button type="button" class="btn btn-info navbar-btn header-btn" data-toggle="modal" data-target="#loginform">Login</button>
             <a class="btn btn-primary navbar-btn header-btn" href="{{pathFor 'register'}}" role="button">Create account</a>
           {{/if}}
         </ul>
