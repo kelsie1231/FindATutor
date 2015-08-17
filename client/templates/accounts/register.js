@@ -30,14 +30,22 @@ Template.register.events({
     };
 
     //check if the field has any problem
-    var errors = validateRegisteredUser(user);
+    var errors = validateRegisterUser(user);
     Session.set(ERRORS, errors);
 
     Meteor.call("createAccout", user, function (error, result){
 
         if(error){
           console.log(error);
-          throwError(error.reason);
+          if(error.reason === "Username already exists.") {
+            errors.username = "Username already exists. Please choose another name.";
+            Session.set(ERRORS, errors);
+          } else if(error.reason === "Email already exists.") {
+            errors.email = "Email already exists. Please choose another email address or login with this email.";
+            Session.set(ERRORS, errors);
+          } else {
+            throwError(error.reason);
+          }
         }
         else{
           Router.go('/');

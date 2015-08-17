@@ -2,7 +2,7 @@ Meteor.methods({
 
   createAccout: function (data){
 
-    var errors = validateRegisteredUser(data);
+    var errors = validateRegisterUser(data);
 
     if (!isEmpty(errors))
       throw new Meteor.Error('invalid-user', "Please check the fields that are marked as red");

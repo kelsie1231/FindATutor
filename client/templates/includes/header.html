@@ -17,8 +17,8 @@
 
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <li><p class="navbar-text">{{currentUser.username}} is currently logged in.</p></li>
-            <li><button class="btn btn-primary navbar-btn header-btn " id="logout" role="button">Logout</button></li>
+            <li><p class="navbar-text">Welcome, {{currentUser.username}}</p></li>
+            <li><button class="btn btn-primary navbar-btn" id="logout" role="button">Logout</button></li>
           {{else}}
             <button type="button" class="btn btn-info navbar-btn header-btn" data-toggle="modal" data-target="#loginform">Login</button>
             <a class="btn btn-primary navbar-btn header-btn" href="{{pathFor 'register'}}" role="button">Create account</a>
