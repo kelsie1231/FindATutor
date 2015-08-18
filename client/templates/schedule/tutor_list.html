@@ -1,0 +1,26 @@
+<template name="tutorList">
+
+  <ul class="media-list">
+    {{#each tutors}}
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+              <li class="media">
+                <a class="media-left" href="#">
+                    <img src="/64_64.svg" width="200px" class="img-rounded" alt="">
+                </a>
+                <div class="media-body"> <!--内容-->
+                    <h4 class="media-heading">
+                        {{name}}
+                    </h4>
+                    <p>
+                        name:{{name}}
+                    </p>
+                </div>
+              </li>
+
+            </div>
+        </div>
+    {{/each}}
+  </ul>
+</template>
