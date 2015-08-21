@@ -1,0 +1,42 @@
+
+.goback-icon-pull-right{
+  float: left;
+  color: grey;
+  /*position: absolute;*/
+  display:block;
+}
+
+.goback-icon-pull-right a:link{
+  color:grey;
+  text-decoration: none;
+}
+
+.goback-icon-pull-right a:visited{
+  color:grey;
+  text-decoration: none;
+}
+
+.course-title{
+  margin-bottom: 10px;
+}
+
+.delete-icon{
+	padding-top: 6px;
+	margin-left: -15px;
+}
+
+.delete-icon a{
+	color: grey;
+}
+
+#direct-icon{
+	padding-top: 6px;
+}
+
+#add-icon{
+	margin-top: 20px;
+}
+
+.courses{
+  margin-bottom: 10px;
+}

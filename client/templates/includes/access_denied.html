@@ -1,0 +1,15 @@
+<template name="accessDeniedLogin">
+  <div class="access-denied jumbotron">
+    <h2>Access Denied</h2>
+    <p>You can't get here! Please log in.</p>
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#loginform">Login</button>
+  </div>
+</template>
+
+<template name="accessDenied">
+  <div class="access-denied jumbotron">
+    <h2>Access Denied</h2>
+    <p>This is not your homepage, you can't get here! </p>
+    <p>Click <a href="{{pathFor 'userHome' username=username}}">here</a> to get to your own homepage :)</p>
+  </div>
+</template>

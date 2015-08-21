@@ -10,14 +10,22 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><p>Find A Tutor</p></a>
+        <a class="navbar-brand" href="/"><p>Private Tutor</p></a>
       </div>
 
       <div class="collapse navbar-collapse" id="navigation">
 
+        <ul class="nav navbar-nav" id="nav-tab">
+          <li class="{{activeClass '/'}}"><a href="/">Home</a></li>
+          <li class="{{activeClass '/tutorList'}}"><a href="{{pathFor 'tutorList'}}">Tutor List</a></li>
+          <li class="{{activeClass '/studentList'}}"><a href="{{pathFor 'studentList'}}">Student List</a></li>
+        </ul>
+
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <li><p class="navbar-text">Welcome, {{currentUser.username}}</p></li>
+            <li><p class="navbar-text nav-home">Welcome, 
+              <a href="{{pathFor 'userHome' username=username}}">{{currentUser.username}}&nbsp;<span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+            </p></li>
             <li><button class="btn btn-primary navbar-btn" id="logout" role="button">Logout</button></li>
           {{else}}
             <button type="button" class="btn btn-info navbar-btn header-btn" data-toggle="modal" data-target="#loginform">Login</button>
@@ -30,5 +38,6 @@
   </nav>
 
   {{> login}}
+
 </template>
 

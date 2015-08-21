@@ -39,16 +39,17 @@ Template.login.events({
       }
       else{
         //successfully login, close the login form
-        $('#loginform').modal('hide')
-
-        Router.go('/');
+        $('#loginform').modal('hide');
       }
 
     });
 
     // Return false to prevent a browser refresh
     return false;
+  },
 
+  'click #login-register': function(event){
+    $('#loginform').modal('hide');
   }
 
 });

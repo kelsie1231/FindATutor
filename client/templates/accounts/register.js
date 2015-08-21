@@ -48,6 +48,13 @@ Template.register.events({
           }
         }
         else{
+          //login use Meteor package
+          Meteor.loginWithPassword(user.username, user.password, function (error){
+            if(error){
+              console.log(error);
+              throwError(error.reason);
+            }
+          });
           Router.go('/');
         }
 

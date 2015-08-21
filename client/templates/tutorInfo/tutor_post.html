@@ -1,0 +1,212 @@
+<template name="tutorPost">
+  <form role="form" class="content form form-horizontal">
+    <h2>Post your tutoring info</h2>
+    <div class="goback-icon-pull-right">
+      <a href="{{pathFor 'tutorList'}}">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> back &nbsp;
+      </a>
+    </div>
+    <hr/>
+
+    <div class="form-group {{errorClass 'name'}}">
+      <label for="tutor-name" class="col-sm-2 control-label">Name</label>
+      <div class="controls col-sm-10">
+          <input type="text" class="form-control" id="tutor-name" placeholder="Name /Nickname">
+          <span class="help-block">{{errorMessage 'name'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'sex'}}">
+        <label for="tutor-sex" class="col-sm-2 control-label">Sex</label>
+        <div class="controls col-sm-10">
+            <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="sex" value="Male"> Male
+               </label>
+             </div>
+             <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="sex" value="Female"> Female
+               </label>
+            </div>
+            <span class="help-block radio-error">{{errorMessage 'sex'}}</span>
+        </div>
+    </div>
+
+    <div class="form-group {{errorClass 'studentCheck'}}">
+        <label for="tutor-student" class="col-sm-3 control-label">Are you a student?</label>
+        <div class="controls col-sm-9">
+            <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="studentCheck" value="yes" class="studentCheck" checked> Yes
+               </label>
+             </div>
+             <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="studentCheck" value="no" class="studentCheck"> No
+               </label>
+            </div>
+            <span class="help-block radio-error">{{errorMessage 'studentCheck'}}</span>
+        </div>
+    </div>
+
+    {{#if checkIs "yes"}}
+      <div class="form-group {{errorClass 'currentSchool'}}">
+        <label for="tutor-school" class="col-sm-3 control-label">Current school</label>
+        <div class="controls col-sm-9">
+            <input type="text" class="form-control" id="tutor-school" placeholder="currently attended school">
+            <span class="help-block">{{errorMessage 'currentSchool'}}</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tutor-year" class="col-sm-3 control-label">Year</label>
+        <div class="controls col-sm-9">
+            <div class="col-sm-4 col-xs-6" id="select-level">
+              <select class="form-control">
+                 <option>Undergraduate</option>
+                 <option>Graduate</option>
+                 <option>High School</option>
+              </select>
+            </div>
+            <div class="col-sm-4 col-xs-6" id="select-year">
+              <select class="form-control">
+                 <option>Freshman</option>
+                 <option>Sophomore</option>
+                 <option>Junior</option>
+                 <option>Senior</option>
+              </select>
+            </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if checkIs 'no'}}
+      <div class="form-group {{errorClass 'pastSchool'}}">
+        <label for="tutor-past-school" class="col-sm-3 control-label">School of Graduation</label>
+        <div class="controls col-sm-9">
+            <input type="text" class="form-control" id="tutor-past-school" placeholder="school of graduation">
+            <span class="help-block">{{errorMessage 'pastSchool'}}</span>
+        </div>
+      </div>
+      <div class="form-group {{errorClass 'graduateYear'}}">
+        <label for="tutor-graduate-year" class="col-sm-3 control-label">Year of Graduation</label>
+        <div class="controls col-sm-9">
+            <input type="text" class="form-control" id="tutor-graduate-year" placeholder="year of graduation">
+            <span class="help-block">{{errorMessage 'graduateYear'}}</span>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="form-group {{errorClass 'major'}}">
+      <label for="tutor-major" class="col-sm-3 control-label">Major</label>
+      <div class="controls col-sm-9">
+          <input type="text" class="form-control" id="tutor-major" placeholder="major">
+          <span class="help-block">{{errorMessage 'major'}}</span>
+      </div>
+    </div>
+    
+    <div class="form-group {{errorClass 'email'}}">
+      <label for="tutor-email" class="col-sm-3 control-label">Email Address</label>
+      <div class="controls col-sm-9">
+          <input type="text" class="form-control" id="tutor-email" placeholder="email address if different from your registered one" value="{{tutorEmail}}">
+          <span class="help-block">{{errorMessage 'email'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'phone'}}">
+      <label for="tutor-phone" class="col-sm-3 control-label">Phone</label>
+      <div class="controls col-sm-9">
+          <input type="text" class="form-control" id="tutor-phone" placeholder="phone">
+          <span class="help-block">{{errorMessage 'phone'}}</span>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="{{errorClass 'course'}}">
+        <label for="tutor-course-number1" class="col-sm-3 control-label">Tutoring course(s)</label>
+      </div>
+      <div class="controls col-sm-9">
+          
+          <div class="row course-title">
+            <div class="col-sm-9">
+              <div class="col-sm-4 col-xs-4">
+                <strong>Course No.</strong>
+              </div>
+              <div class="col-sm-1 col-xs-2">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              </div>
+              <div class="col-sm-offset-1 col-sm-6 col-xs-6">
+                <strong>Course Title</strong>
+              </div>
+             </div>
+          </div>
+
+          <div class="row courses" id="course1">
+            <div class="col-sm-3 col-xs-9 {{courseErrorClass 'courseNumber1'}}">
+              <input type="text" class="form-control" id="tutor-course-number1" placeholder="i.e. Math109">
+            </div>
+            <div class="col-sm-1 col-xs-3" id="direct-icon">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </div>
+            <div class="controls col-sm-7 col-xs-11 {{courseErrorClass 'courseTitle1'}}">
+              <input type="text" class="form-control" id="tutor-course-title1" placeholder="i.e. Mathematical Reasoning">
+            </div>
+            <div class="col-sm-1 col-xs-1 delete-icon">
+              <a href="#" id="delete1" class="delete-course"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            </div>
+          </div>
+          
+          <a href="#" id="add-icon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add more</a>
+
+          <div class="{{errorClass 'course'}}"><span class="help-block">{{errorMessage 'course'}}</span></div>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'salary'}}">
+      <label for="tutor-salary" class="col-sm-3 control-label">Expected salary</label>
+      <div class="controls col-sm-4">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" class="form-control" id="tutor-salary" placeholder="expected salary">
+          <div class="input-group-addon">/hr</div>
+        </div>
+        <span class="help-block">{{errorMessage 'salary'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'workload'}}">
+      <label for="" class="col-sm-3 control-label">Max workload</label>
+      <div class="controls col-sm-9">
+        <div class="radio col-sm-7 col-md-6 col-lg-5 {{errorClass 'hour'}}">
+          <label>
+            <input type="radio" name="workload" value="number">
+            <div class="input-group">
+              <input type="text" class="form-control" id="tutor-hour" placeholder="maximum hrs to work">
+              <div class="input-group-addon">hrs /week</div>
+            </div>
+          </label>
+          <span class="help-block">{{errorMessage 'hour'}}</span>
+        </div>
+        <div class="radio col-sm-5">
+          <label>
+            <input type="radio" name="workload" value="any">No restriction
+          </label>
+        </div>
+        <div class="col-sm-12">
+          <span class="help-block">{{errorMessage 'workload'}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tutor-comment" class="col-sm-3 control-label">Comments</label>
+      <div class="controls col-sm-9">
+          <textarea rows="3" class="form-control" id="tutor-comment" placeholder="anything you wanna add"></textarea>
+      </div>
+    </div>
+
+    <center><input type="submit" value="Submit" class="btn btn-primary"/></center>
+  </form>
+</template>

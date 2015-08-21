@@ -1,0 +1,35 @@
+.table-title{
+  text-align:right;
+  width: 25%;
+  font-weight: bold;
+}
+
+.table-th{
+  text-align:center;
+  font-size: 20px;
+  /*display: inline;*/
+}
+
+.goback-icon{
+  text-align: left;
+  float: left;
+  font-weight: normal;
+  color: grey;
+  position: absolute;
+}
+
+.goback-icon a:link{
+  color:grey;
+  text-decoration: none;
+}
+
+.goback-icon a:visited{
+  color:grey;
+  text-decoration: none;
+}
+
+.edit-link{
+  text-align: center;
+  margin-top: 8px;
+  font-weight: normal;
+}
