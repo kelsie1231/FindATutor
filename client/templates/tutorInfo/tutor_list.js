@@ -1,5 +1,13 @@
 Meteor.subscribe('tutors');
 
+$(document).ready(function(){
+
+  // $(window).on("load", function(){
+    console.log("tetest");
+  // });
+
+});
+
 Template.tutorList.helpers({
   //sorted by time
   tutors: function() {
@@ -11,21 +19,6 @@ Template.tutorList.helpers({
 });
 
 Template.tutorList.events({
-	'click #post-tutor-info':function(events) {
-
-		event.preventDefault();
-
-		//if user does not login, ask to login
-		if(!Meteor.user()){
-			throwError("Please login first");
-			$('#loginform').modal('show');
-			return;
-		}
-		console.log(Router.current().route.path(this));
-
-		//else go to post tutor info page
-		Router.go('/tutorPost');
-	},
 
 	'click .deleteTutor': function(event){
         event.preventDefault();
@@ -38,5 +31,16 @@ Template.tutorList.events({
     'click #loginToSee': function(event) {
     	event.preventDefault();
     	$('#loginform').modal('show');
-    }
+    },
+
+    'mouseenter .course-display': function(event) {
+      event.preventDefault();
+      $(event.target).find('.course-panel').fadeIn(300);
+    },
+
+    'mouseleave .course-display': function(event) {
+      event.preventDefault();
+      $(event.target).find(".course-panel").fadeOut(300);
+    },
+
 });

@@ -1,0 +1,25 @@
+<template name="tutorListHeader">
+  <div class="jumbotron well well-lg" id="tutorlist-head">
+      <h1 style="display:inline-block">Tutor List</h1>
+      <form id="tutor-search">
+        <div>
+            <div class="form-group" style="display:inline-block">
+              <input type="text" id="tutor-search" name="search" class="form-control" placeholder="Search Course Title"/>
+            </div>
+            <button type="submit" class="btn btn-default"><!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->Search</button>
+        </div>
+      </form>
+
+      <hr/>
+      <p><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> If you're a student: find all available tutors 
+        {{#if inList}}
+          here
+        {{else}}
+          <a href="{{pathFor 'tutorList'}}">here</a>
+        {{/if}}
+      </p>
+      <p><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> If you're a tutor: post your tutoring info here
+        <button class="btn btn-primary" id="post-tutor-info">Post</button>
+      </p>
+  </div>
+</template>

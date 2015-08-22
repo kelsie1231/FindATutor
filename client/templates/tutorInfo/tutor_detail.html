@@ -30,7 +30,7 @@
                     <tr>
                       <td class="table-title">Sex</td><td>{{sex}}</td>
                     </tr>
-                    {{#if checkIs 'yes'}}
+                    {{#if equals studentCheck 'yes'}}
                       <tr>
                         <td class="table-title">Currently study at</td><td>{{currentSchool}}</td>
                       </tr>
@@ -38,7 +38,7 @@
                         <td class="table-title">Current level</td><td>{{level}} &middot; {{year}}</td>
                       </tr>
                     {{/if}}
-                    {{#if checkIs 'no'}}
+                    {{#if equals studentCheck 'no'}}
                       <tr>
                         <td class="table-title">School of graduation</td><td>{{pastSchool}}</td>
                       </tr>
@@ -68,10 +68,10 @@
                     <tr>
                       <td class="table-title">Max workload</td>
                       <td> 
-                        {{#if workloadIs 'number'}} 
+                        {{#if equals workload 'number'}} 
                           {{hour}} hrs/week
                         {{/if}}
-                        {{#if workloadIs 'any'}}
+                        {{#if equals workload 'any'}}
                           No restriction
                         {{/if}}
                       </td>

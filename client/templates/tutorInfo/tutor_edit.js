@@ -27,9 +27,6 @@ Template.tutorEdit.helpers({
   checkIs: function(check) {
     return check === Session.get(STUDENT).bool;
   },
-  equals: function(check1, check2) {
-    return check1 === check2;
-  },
   courseInfo: function(context) {
     var result = [];
     _.each(context, function(value, key,list){

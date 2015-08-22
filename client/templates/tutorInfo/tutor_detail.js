@@ -1,11 +1,4 @@
 Template.tutorDetail.helpers({
-    'checkIs': function(check) {
-        return check === Template.currentData().studentCheck;
-    },
-
-    'workloadIs': function(check) {
-        return check === Template.currentData().workload;
-    },
     'time': function() {
         var time = Template.currentData().submitted;
         var month = time.getMonth() + 1;

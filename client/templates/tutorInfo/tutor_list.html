@@ -1,13 +1,6 @@
 <template name="tutorList">
 
-  <div class="jumbotron well well-lg" id="tutorlist-head">
-      <h1>Tutor List</h1>
-      <hr/>
-      <p><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> If you're a student: find all available tutors here</p>
-      <p><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> If you're a tutor: post your tutoring info here
-        <button class="btn btn-primary" id="post-tutor-info">Post</button>
-      </p>
-  </div>
+  {{> tutorListHeader}}
 
   <div class="row">
     {{#each tutors}}
@@ -30,16 +23,6 @@
                 </div>
             </div>
             <div class="panel-body">
-                <!-- {{year}}<hr/>
-                {{sex}}<hr/> -->
-                <!-- {{#each course}}
-                  {{this}}
-                {{/each}}<hr/>
-                {{#each courseTitle}}
-                  {{this}}
-                {{/each}}<hr/> -->
-                <!-- {{salary}}<hr/>
-                {{memo}}<hr/> -->
 
                 <table class="table table-striped">
                   
@@ -47,36 +30,41 @@
                     <tr>
                       <td class="table-title">Sex</td><td>{{sex}}</td>
                     </tr>
-                    <!-- {{#if checkIs 'yes'}} -->
+                    {{#if equals studentCheck 'yes'}}
                       <tr>
                         <td class="table-title">Study at</td><td>{{currentSchool}}</td>
                       </tr>
                       <tr>
                         <td class="table-title">Level</td><td>{{level}} &middot; {{year}}</td>
                       </tr>
-                    <!-- {{/if}} -->
-                    <!-- {{#if checkIs 'no'}}
+                    {{/if}}
+                    {{#if equals studentCheck 'no'}}
                       <tr>
-                        <td class="table-title">School of graduation</td><td>{{pastSchool}}</td>
+                        <td class="table-title">Graduated</td><td>{{pastSchool}}</td>
                       </tr>
                       <tr>
-                        <td class="table-title">Year of graduation</td><td>{{graduateYear}}</td>
+                        <td class="table-title">Year</td><td>{{graduateYear}}</td>
                       </tr>
-                    {{/if}} -->
+                    {{/if}}
                     <tr>
                       <td class="table-title">Major</td><td>{{major}}</td>
                     </tr>
                     <!-- print the course info -->
                     <tr>
-                      <td class="table-title">Course</td>
-                      <td><ul class="list-group">
-                      {{#each course}}
-                        <li class="list-group-item">
-                          <span class="label label-default">{{courseNumber}}</span>
-                          <small><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></small>
-                          {{courseTitle}}</li>
-                      {{/each}}
-                      </ul></td>
+                      <td class="table-title" style="vertical-align: middle">Course</td>
+                      <td>
+                        {{#each course}}
+                          <h4 class="course-display">
+                            <abbr title=""><span class="label label-warning">{{courseNumber}}</span></abbr>
+                            <small><div class="panel panel-warning course-panel">
+                              <div class="panel-heading ">
+                                {{courseTitle}}
+                              </div>
+                            </div></small>
+                          </h4>
+                          &nbsp;
+                        {{/each}}
+                    </td>
                     </tr>
                     <tr>
                       <td class="table-title">Expected</td><td> ${{salary}} /hr</td>
@@ -84,11 +72,6 @@
 
                   </tbody>
                 </table>
-
-
-
-
-
 
 
             </div>

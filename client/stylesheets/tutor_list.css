@@ -15,3 +15,28 @@
     position: absolute;
     z-index: -1;	
 }
+
+.course-display{
+    display: inline-block;
+}
+
+.course-panel{ 
+    display:none; 
+    position:absolute; 
+    z-index:1000; 
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.course-panel > div{
+    padding: 6px 6px;
+}
+
+#tutor-search{
+    display:inline-block; 
+    margin-left:30px;
+}
+/*.list-panel{
+    margin-bottom:-10000px;
+    padding-bottom:10000px;
+}*/
