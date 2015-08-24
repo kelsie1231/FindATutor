@@ -1,11 +1,11 @@
-<template name="tutorSearch">
+<template name="studentSearch">
   {{#if exist type}}
-    {{>tutorListHeader}}
+    {{>studentListHeader}}
 
     <div class="row">
-      {{#each tutors value type}}
-      	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-          {{> tutorListContentItem}}
+      {{#each students value type}}
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+          {{> studentListContentItem}}
         </div>
         {{#if multiple index 2}}
           <div class="clearfix visible-sm-block visible-md-block"></div>
@@ -24,20 +24,20 @@
           {{else}}
             Vague Searching for 
           {{/if}}
-      	  "{{notFound}}" in Tutor List: could not found any data.
-
+          "{{notFound}}" in Student List: could not found any data.
+          
           {{#if isExact}}<small style="color:#a94442"><a href="#" id="changeSearch"><em>Try Vague Search</em></a></small>{{/if}}
         </h4>
         <div style="margin-left:30px">
           <p>Please check if you put the space between the course and the course number (i.e. for exact searching, "CSE 30" is better than "CSE30").</p>
-          <p>Now listing all available tutors ...</p>
+          <p>Now listing all requesting students ...</p>
         </div>
       </div>
 
       <div class="row">
-        {{#each allTutors}}
+        {{#each allStudents}}
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            {{> tutorListContentItem}}
+            {{> studentListContentItem}}
           </div>
           {{#if multiple index 2}}
             <div class="clearfix visible-sm-block visible-md-block"></div>
@@ -52,11 +52,4 @@
   {{else}} <!-- if type doesn't exist (i.e. wrong page like exxxxSearch)-->
     {{>notFound2}}
   {{/if}}
-</template>
-
-<template name="notFound2">
-  <div class="not-found jumbotron">
-    <h2>404</h2>
-    <p>Sorry, we couldn't find a page at this address.</p>
-  </div>
 </template>

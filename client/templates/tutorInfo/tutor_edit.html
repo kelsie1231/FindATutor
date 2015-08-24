@@ -11,7 +11,7 @@
 
     <div class="form-group {{errorClass 'name'}}">
       <label for="tutor-edit-name" class="col-sm-2 control-label">Name</label>
-      <div class="controls col-sm-10">
+      <div class="controls col-sm-9">
           <input type="text" class="form-control" id="tutor-edit-name" placeholder="Name /Nickname" value="{{name}}">
           <span class="help-block">{{errorMessage 'name'}}</span>
       </div>
@@ -19,7 +19,7 @@
 
     <div class="form-group {{errorClass 'sex'}}">
         <label for="tutor-edit-sex" class="col-sm-2 control-label">Sex</label>
-        <div class="controls col-sm-10">
+        <div class="controls col-sm-9">
             <div class="radio col-sm-3 col-xs-5">
                <label>
                   <input type="radio" name="sex" value="Male" checked="{{equals sex 'Male'}}"> Male
@@ -36,7 +36,7 @@
 
     <div class="form-group {{errorClass 'studentCheck'}}">
         <label for="tutor-edit-student" class="col-sm-3 control-label">Are you a student?</label>
-        <div class="controls col-sm-9">
+        <div class="controls col-sm-8">
             <div class="radio col-sm-3 col-xs-5">
                <label>
                   <input type="radio" name="studentCheck" value="yes" class="studentCheck-edit" checked="{{equals studentCheck 'yes'}}"> Yes
@@ -54,7 +54,7 @@
     {{#if checkIs 'yes'}}
       <div class="form-group {{errorClass 'currentSchool'}}">
         <label for="tutor-edit-school" class="col-sm-3 control-label">Current school</label>
-        <div class="controls col-sm-9">
+        <div class="controls col-sm-8">
             <input type="text" class="form-control" id="tutor-edit-school" placeholder="currently attended school" value="{{currentSchool}}">
             <span class="help-block">{{errorMessage 'currentSchool'}}</span>
         </div>
@@ -62,8 +62,8 @@
 
       <div class="form-group">
         <label for="tutor-edit-year" class="col-sm-3 control-label">Year</label>
-        <div class="controls col-sm-9">
-            <div class="col-sm-4 col-xs-6" id="select-level">
+        <div class="controls col-sm-8">
+            <div class="col-md-4 col-sm-5 col-xs-6" id="select-level">
               <select class="form-control">
                  <option selected="{{equals level 'Undergraduate'}}">Undergraduate</option>
                  <option selected="{{equals level 'Graduate'}}">Graduate</option>
@@ -85,14 +85,14 @@
     {{#if checkIs 'no'}}
       <div class="form-group {{errorClass 'pastSchool'}}">
         <label for="tutor-edit-past-school" class="col-sm-3 control-label">School of Graduation</label>
-        <div class="controls col-sm-9">
+        <div class="controls col-sm-8">
             <input type="text" class="form-control" id="tutor-edit-past-school" placeholder="school of graduation" value="{{pastSchool}}">
             <span class="help-block">{{errorMessage 'pastSchool'}}</span>
         </div>
       </div>
       <div class="form-group {{errorClass 'graduateYear'}}">
         <label for="tutor-edit-graduate-year" class="col-sm-3 control-label">Year of Graduation</label>
-        <div class="controls col-sm-9">
+        <div class="controls col-sm-8">
             <input type="text" class="form-control" id="tutor-edit-graduate-year" placeholder="year of graduation" value="{{graduateYear}}">
             <span class="help-block">{{errorMessage 'graduateYear'}}</span>
         </div>
@@ -101,7 +101,7 @@
 
     <div class="form-group {{errorClass 'major'}}">
       <label for="tutor-edit-major" class="col-sm-3 control-label">Major</label>
-      <div class="controls col-sm-9">
+      <div class="controls col-sm-8">
           <input type="text" class="form-control" id="tutor-edit-major" placeholder="major" value="{{major}}">
           <span class="help-block">{{errorMessage 'major'}}</span>
       </div>
@@ -109,7 +109,7 @@
     
     <div class="form-group {{errorClass 'email'}}">
       <label for="tutor-edit-email" class="col-sm-3 control-label">Email Address</label>
-      <div class="controls col-sm-9">
+      <div class="controls col-sm-8">
           <input type="text" class="form-control" id="tutor-edit-email" placeholder="email address if different from your registered one" value="{{email}}">
           <span class="help-block">{{errorMessage 'email'}}</span>
       </div>
@@ -117,7 +117,7 @@
 
     <div class="form-group {{errorClass 'phone'}}">
       <label for="tutor-edit-phone" class="col-sm-3 control-label">Phone</label>
-      <div class="controls col-sm-9">
+      <div class="controls col-sm-8">
           <input type="text" class="form-control" id="tutor-edit-phone" placeholder="phone" value="{{phone}}">
           <span class="help-block">{{errorMessage 'phone'}}</span>
       </div>
@@ -147,13 +147,13 @@
         {{#each courseInfo course}}
           <div class="row courses" id="course-edit{{key}}">
             <div class="col-sm-3 col-xs-9">
-              <input type="text" class="form-control" id="tutor-course-number-edit{{key}}" placeholder="i.e. Math109" value="{{courseNumber}}">
+              <input type="text" class="form-control" id="tutor-course-number{{key}}" placeholder="i.e. Math109" value="{{courseNumber}}">
             </div>
             <div class="col-sm-1 col-xs-3" id="direct-icon">
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             </div>
             <div class="controls col-sm-7 col-xs-11">
-              <input type="text" class="form-control" id="tutor-course-title-edit{{key}}" placeholder="i.e. Mathematical Reasoning" value="{{courseTitle}}">
+              <input type="text" class="form-control" id="tutor-course-title{{key}}" placeholder="i.e. Mathematical Reasoning" value="{{courseTitle}}">
             </div>
             <div class="col-sm-1 col-xs-1 delete-icon">
               <a href="#" id="delete-edit{{key}}" class="delete-course"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -206,7 +206,7 @@
 
     <div class="form-group">
       <label for="tutor-edit-comment" class="col-sm-3 control-label">Comments</label>
-      <div class="controls col-sm-9">
+      <div class="controls col-sm-8">
           <textarea rows="3" class="form-control" id="tutor-edit-comment" placeholder="anything you wanna add" value="{{comment}}"></textarea>
       </div>
     </div>

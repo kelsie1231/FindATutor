@@ -1,21 +1,21 @@
 var NOT_FOUND = "searchNotFound";
 var TYPE = "searchType";
 
-Template.tutorSearch.onCreated(function(){
+Template.studentSearch.onCreated(function(){
   Session.set(NOT_FOUND, null);
   Session.set(TYPE, null);
 });
 
 
-Template.tutorSearch.helpers({
+Template.studentSearch.helpers({
   exist: function(type){
     return (type === "exactSearch" || type === "vagueSearch");
   },
 
-	tutors: function(value, type){
+	students: function(value, type){
     if(type === "exactSearch") {
       var regex = new RegExp(["^", value, "$"].join(""), "i");
-      var results = Tutors.find({ $or:[{"course.courseNumber":regex}, {"course.courseTitle": regex}] });
+      var results = Students.find({ $or:[{"course.courseNumber":regex}, {"course.courseTitle": regex}] });
       if(results.count() !== 0){
         Session.set(NOT_FOUND, null);
         results = results.fetch();
@@ -39,7 +39,7 @@ Template.tutorSearch.helpers({
         regex.push(new RegExp([val].join(""), "i"));
       });
       
-      var results = Tutors.find({ $or:[{"course.courseNumber":{$in:regex} }, {"course.courseTitle": {$in:regex} }] });
+      var results = Students.find({ $or:[{"course.courseNumber":{$in:regex} }, {"course.courseTitle": {$in:regex} }] });
       if(results.count() !== 0){
         Session.set(NOT_FOUND, null);
         results = results.fetch();
@@ -63,18 +63,19 @@ Template.tutorSearch.helpers({
   isExact: function(){
     return Session.get(TYPE) === "exactSearch";
   },
-  allTutors: function(){
-    var tutors = Tutors.find({}, {sort: {submitted: 1}}).fetch();
-    _.each(tutors, function(value, key){
+  allStudents: function(){
+    var students = Students.find({}, {sort: {submitted: 1}}).fetch();
+    _.each(students, function(value, key){
       value.index = key+1;
     });
-    return tutors;
+    return students;
   }
 });
 
-Template.tutorSearch.events({
+
+Template.studentSearch.events({
   'click #changeSearch': function(event){
     event.preventDefault();
-    Router.go('/tutorSearch/vagueSearch/'+this.value);
+    Router.go('/studentSearch/vagueSearch/'+this.value);
   }
 });

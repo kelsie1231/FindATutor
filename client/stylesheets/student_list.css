@@ -1,0 +1,17 @@
+#studentlist-head {
+  position: relative;
+  background: none;
+}
+
+#studentlist-head:after {
+    content:"";
+    background: url("/04.jpg");
+    background-size:cover;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;  
+}

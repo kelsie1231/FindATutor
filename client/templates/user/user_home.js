@@ -1,10 +1,12 @@
 var WIDTH = "currentWindowWidth";
 var TAB_CLICK = "navTabClick";
+var SIDE_CLICK = "navSidebarClick";
 
 Template.userHome.onCreated(function(){
   Session.set("resize", null);
   Session.set(WIDTH,$(window).width());
   Session.set(TAB_CLICK, "tutorPost");
+  Session.set(SIDE_CLICK, "account");
 });
 
 Meteor.startup(function () {
@@ -33,21 +35,9 @@ Template.userHome.helpers({
     return Session.get(TAB_CLICK) === "tutorPost";
   },
 
-  tutorPost: function(){
-    var tutorInfo = Tutors.find({"userId": Meteor.userId()});
-    if (tutorInfo.count() === 0)
-      return false;
-    else
-      return tutorInfo;
-  },
-
-  studentPost: function(){
-    var studentInfo = Students.find({"userId": Meteor.userId()});
-    if (studentInfo.count() === 0)
-      return false;
-    else
-      return studentInfo;
-  },
+  clickAccount: function(){
+    return Session.get(SIDE_CLICK) === "account";
+  }
 });
 
 Template.userHome.events({
@@ -63,5 +53,28 @@ Template.userHome.events({
     $(event.target).tab("show");
 
     Session.set(TAB_CLICK, "studentPost");
-  }
+  },
+
+  'click #account': function(event){
+    event.preventDefault();
+    $(event.target).tab("show");
+    Session.set(SIDE_CLICK, "account");
+  },
+
+  'click #posts': function(event){
+    event.preventDefault();
+    $(event.target).tab("show");
+    Session.set(SIDE_CLICK, "posts");
+  },
+
+  'mouseenter .course-display': function(event) {
+    event.preventDefault();
+    $(event.target).find('.course-panel').fadeIn(300);
+  },
+
+  'mouseleave .course-display': function(event) {
+    event.preventDefault();
+    $(event.target).find(".course-panel").fadeOut(300);
+  },
+
 });

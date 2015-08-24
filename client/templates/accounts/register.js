@@ -1,9 +1,9 @@
 var ERRORS = "registerErrors";
-var REGISTER_TYPE = "registerType";
+// var REGISTER_TYPE = "registerType";
 
 Template.register.onCreated(function() {
   Session.set(ERRORS, {});
-  Session.set(REGISTER_TYPE, {});
+  // Session.set(REGISTER_TYPE, {});
 });
 
 Template.register.helpers({
@@ -26,7 +26,7 @@ Template.register.events({
       email:      template.$('[id=register-email]').val(),
       password:   template.$('[id=register-password]').val(),
       repassword: template.$('[id=register-password-repeat]').val(),
-      role:       Session.get(REGISTER_TYPE).type
+      // role:       Session.get(REGISTER_TYPE).type
     };
 
     //check if the field has any problem
@@ -65,8 +65,8 @@ Template.register.events({
 
   },
 
-  'click .registerType': function(event, template){
-    Session.set(REGISTER_TYPE, {'type': event.currentTarget.value});
-  }
+  // 'click .registerType': function(event, template){
+  //   Session.set(REGISTER_TYPE, {'type': event.currentTarget.value});
+  // }
 
 });

@@ -1,0 +1,168 @@
+<template name="studentEdit">
+
+  <form role="form" class="content form form-horizontal">
+    <h2>Edit your student info</h2>
+    <div class="goback-icon-pull-right">
+      <a href="{{pathFor 'studentDetail'}}">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> back &nbsp;
+      </a>
+    </div>
+    <hr/>
+
+    <div class="form-group {{errorClass 'name'}}">
+      <label for="student-edit-name" class="col-sm-2 control-label">Name</label>
+      <div class="controls col-sm-9">
+          <input type="text" class="form-control" id="student-edit-name" placeholder="Name /Nickname" value="{{name}}">
+          <span class="help-block">{{errorMessage 'name'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'sex'}}">
+        <label for="student-edit-sex" class="col-sm-2 control-label">Sex</label>
+        <div class="controls col-sm-9">
+            <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="sex" value="Male" checked="{{equals sex 'Male'}}"> Male
+               </label>
+             </div>
+             <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="sex" value="Female" checked="{{equals sex 'Female'}}"> Female
+               </label>
+            </div>
+            <span class="help-block radio-error">{{errorMessage 'sex'}}</span>
+        </div>
+    </div>
+
+    <div class="form-group {{errorClass 'currentSchool'}}">
+      <label for="student-edit-school" class="col-sm-3 control-label">Current school</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-edit-school" placeholder="currently attended school" value="{{currentSchool}}">
+          <span class="help-block">{{errorMessage 'currentSchool'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="student-edit-year" class="col-sm-3 control-label">Year</label>
+      <div class="controls col-sm-8">
+          <div class="col-md-4 col-sm-5 col-xs-6" id="select-level">
+            <select class="form-control">
+               <option selected="{{equals level 'Undergraduate'}}">Undergraduate</option>
+               <option selected="{{equals level 'Graduate'}}">Graduate</option>
+               <option selected="{{equals level 'High School'}}">High School</option>
+            </select>
+          </div>
+          <div class="col-sm-4 col-xs-6" id="select-year">
+            <select class="form-control">
+               <option selected="{{equals year 'Freshman'}}">Freshman</option>
+               <option selected="{{equals year 'Sophomore'}}">Sophomore</option>
+               <option selected="{{equals year 'Junior'}}">Junior</option>
+               <option selected="{{equals year 'Senior'}}">Senior</option>
+            </select>
+          </div>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'major'}}">
+      <label for="student-edit-major" class="col-sm-3 control-label">Major</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-edit-major" placeholder="major" value="{{major}}">
+          <span class="help-block">{{errorMessage 'major'}}</span>
+      </div>
+    </div>
+    
+    <div class="form-group {{errorClass 'email'}}">
+      <label for="student-edit-email" class="col-sm-3 control-label">Email Address</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-edit-email" placeholder="email address if different from your registered one" value="{{email}}">
+          <span class="help-block">{{errorMessage 'email'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'phone'}}">
+      <label for="student-edit-phone" class="col-sm-3 control-label">Phone</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-edit-phone" placeholder="phone number" value="{{phone}}">
+          <span class="help-block">{{errorMessage 'phone'}}</span>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="{{errorClass 'course'}}">
+        <label for="student-edit-course-number" class="col-sm-3 control-label">Need help course(s)</label>
+      </div>
+      <div class="controls col-sm-9">
+
+        <div class="row course-title">
+          <div class="col-sm-9">
+            <div class="col-sm-4 col-xs-4">
+              <strong>Course No.</strong>
+            </div>
+            <div class="col-sm-1 col-xs-2">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </div>
+            <div class="col-sm-offset-1 col-sm-6 col-xs-6">
+              <strong>Course Title</strong>
+            </div>
+           </div>
+        </div>
+
+        {{#each courseInfo course}}
+          <div class="row courses" id="course-edit{{key}}">
+            <div class="col-sm-3 col-xs-9">
+              <input type="text" class="form-control" id="student-course-number{{key}}" placeholder="i.e. Math109" value="{{courseNumber}}">
+            </div>
+            <div class="col-sm-1 col-xs-3" id="direct-icon">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </div>
+            <div class="controls col-sm-7 col-xs-11">
+              <input type="text" class="form-control" id="student-course-title{{key}}" placeholder="i.e. Mathematical Reasoning" value="{{courseTitle}}">
+            </div>
+            <div class="col-sm-1 col-xs-1 delete-icon">
+              <a href="#" id="delete-edit{{key}}" class="delete-course"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        {{/each}}
+
+        <a href="#" id="add-icon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add more</a>
+
+        <div class="{{errorClass 'course'}}"><span class="help-block">{{errorMessage 'course'}}</span></div>
+      </div>
+    </div>
+
+
+    <div class="form-group {{errorClass 'salary'}}">
+      <label for="student-edit-salary" class="col-sm-3 control-label">Willing to pay</label>
+      <div class="controls col-sm-4">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" class="form-control" id="student-edit-salary" placeholder="expected salary" value="{{salary}}">
+          <div class="input-group-addon">/hr</div>
+        </div>
+        <span class="help-block">{{errorMessage 'salary'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'hour'}}">
+      <label for="student-edit-hour" class="col-sm-3 control-label">Hours that need help</label>
+      <div class="controls col-sm-4">
+        <div class="input-group">
+          <input type="text" class="form-control" id="student-edit-hour" placeholder="hours that need help">
+          <div class="input-group-addon">hrs /week</div>
+        </div>
+        <span class="help-block">{{errorMessage 'hour'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="student-edit-comment" class="col-sm-3 control-label">Comments</label>
+      <div class="controls col-sm-8">
+          <textarea rows="3" class="form-control" id="student-edit-comment" placeholder="anything you wanna add" value="{{comment}}"></textarea>
+      </div>
+    </div>
+
+    <center><input type="submit" value="Submit" class="btn btn-primary"/></center>
+  </form>
+
+</template>

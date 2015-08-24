@@ -1,12 +1,12 @@
-Template.tutorListHeader.helpers({
+Template.studentListHeader.helpers({
     inList: function(){
-      return Router.current().route.path(this) === '/tutorList';
+      return Router.current().route.path(this) === '/studentList';
     }
 });
 
 
-Template.tutorListHeader.events({
-  'click #post-tutor-info':function(events) {
+Template.studentListHeader.events({
+  'click #post-student-info':function(events) {
 
 		event.preventDefault();
 
@@ -16,31 +16,30 @@ Template.tutorListHeader.events({
 			$('#loginform').modal('show');
 			return;
 		}
-		console.log(Router.current().route.path(this));
 
-		//else go to post tutor info page
-		Router.go('/tutorPost');
+		//else go to post student info page
+		Router.go('/studentPost');
 	},
 
   'click #exact-search': function(event) {
     event.preventDefault();
     var searchValue = $('[name=search]').val();
-    // console.log(searchValue);
+    
     if(searchValue)
-      Router.go('/tutorSearch/exactSearch/' + searchValue);
+      Router.go('/studentSearch/exactSearch/' + searchValue);
     else{
-      throwError("You didn't enter anything for search, listing all tutors...");
-      Router.go('/tutorList');
+      throwError("You didn't enter anything for search, listing all students...");
+      Router.go('/studentList');
     }
   },
   'click #vague-search': function(event) {
     event.preventDefault();
     var searchValue = $('[name=search]').val();
     if(searchValue)
-      Router.go('/tutorSearch/vagueSearch/' + searchValue);
+      Router.go('/studentSearch/vagueSearch/' + searchValue);
     else{
-      throwError("You didn't enter anything for search, listing all tutors...");
-      Router.go('/tutorList');
+      throwError("You didn't enter anything for search, listing all students...");
+      Router.go('/studentList');
     }
   },
   'mouseenter .course-display': function(event) {

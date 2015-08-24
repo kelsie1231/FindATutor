@@ -1,0 +1,15 @@
+<template name="studentListContent">
+	<div class="row">
+    {{#each students}}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        {{> studentListContentItem}}
+      </div>
+      {{#if multiple index 2}}
+        <div class="clearfix visible-sm-block visible-md-block"></div>
+      {{/if}}
+      {{#if multiple index 3}}
+        <div class="clearfix visible-lg-block"></div>
+      {{/if}}
+    {{/each}}
+  </div>
+</template>

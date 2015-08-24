@@ -1,24 +1,12 @@
-Meteor.subscribe('tutors');
 
-$(document).ready(function(){
-
-  // $(window).on("load", function(){
-    console.log("tetest");
-  // });
-
-});
-
-Template.tutorList.helpers({
-  //sorted by time
-  tutors: function() {
-    return Tutors.find({}, {sort: {submitted: 1}});
-  },
+Template.tutorListContentItem.helpers({
   ownInfo: function(){
-  	return this.userId === Meteor.userId();
+    return this.userId === Meteor.userId();
   }
 });
 
-Template.tutorList.events({
+
+Template.tutorListContentItem.events({
 
 	'click .deleteTutor': function(event){
         event.preventDefault();

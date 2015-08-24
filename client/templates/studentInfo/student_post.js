@@ -1,50 +1,41 @@
-var ERRORS = "tutorPostErrors";
-var STUDENT = "studentCheck";
+var ERRORS = "studentPostErrors";
 var COURSE = "numberOfCourse";
 var COURSENO = "actualNumberOfCourse";
 
-Template.tutorPost.onCreated(function() {
+Template.studentPost.onCreated(function() {
   Session.set(ERRORS, {});
-  Session.set(STUDENT,{'bool':'yes'});
   Session.set(COURSE, 1);
   Session.set(COURSENO, 1);
 });
 
-Template.tutorPost.helpers({
+Template.studentPost.helpers({
   errorMessage: function(field) { //error message itself
     return Session.get(ERRORS)[field];
   },
   errorClass: function (field) { //check if error message exists
     return !!Session.get(ERRORS)[field] ? 'has-error' : '';
   },
-  checkIs: function(check) {
-    return check === Session.get(STUDENT).bool;
-  },
-  tutorEmail: function() {
+  studentEmail: function() {
     return Meteor.user().emails[0].address;
   },
 });
 
-Template.tutorPost.events({
+Template.studentPost.events({
   'submit form': function(event) {
     event.preventDefault();
 
-    var tutorInfo = {
-      name: $('#tutor-name').val(),
+    var studentInfo = {
+      name: $('#student-name').val(),
       sex: $("input[name='sex']:checked").val(),
-      studentCheck: $("input[name='studentCheck']:checked").val(),
-      currentSchool: $('#tutor-school').val(),
+      school: $('#student-school').val(),
       level: $('#select-level option:selected').text(),
       year: $('#select-year option:selected').text(),
-      pastSchool: $('#tutor-past-school').val(),
-      graduateYear: $('#tutor-graduate-year').val(),
-      major: $('#tutor-major').val(),
-      email: $('#tutor-email').val(),
-      phone: $('#tutor-phone').val(),
-      salary: $('#tutor-salary').val(),
-      workload: $("input[name='workload']:checked").val(),
-      hour: $('#tutor-hour').val(),
-      comment: $('#tutor-comment').val()
+      major: $('#student-major').val(),
+      email: $('#student-email').val(),
+      phone: $('#student-phone').val(),
+      salary: $('#student-salary').val(),
+      hour: $('#student-hour').val(),
+      comment: $('#student-comment').val()
     };
     
     var courseInfo = [];
@@ -53,19 +44,19 @@ Template.tutorPost.events({
       var order = $(this).attr("id").substring(6);
       courseInfo.push({
         order: order,
-        courseNumber: $('#tutor-course-number'+order).val(),
-        courseTitle: $('#tutor-course-title'+order).val()
+        courseNumber: $('#student-course-number'+order).val(),
+        courseTitle: $('#student-course-title'+order).val()
       });
       courseInfo2.push({
-        courseNumber: $('#tutor-course-number'+order).val(),
-        courseTitle: $('#tutor-course-title'+order).val()
+        courseNumber: $('#student-course-number'+order).val(),
+        courseTitle: $('#student-course-title'+order).val()
       });
     });
 
-    //check if the tutor misses anything
-    var errors = validateTutor(tutorInfo); //lib/tutor.js
+    //check if the student misses anything
+    var errors = validateStudent(studentInfo); //lib/student.js
 
-    var courseErrors = validateTutorCourseInfo(courseInfo);
+    var courseErrors = validateStudentCourseInfo(courseInfo);
     var hasCourseError = false;
 
     _.each(courseErrors,function(value, key){
@@ -82,27 +73,15 @@ Template.tutorPost.events({
     }
 
     Session.set(ERRORS, errors);
-
-
-    Meteor.call('tutorInfoInsert', tutorInfo, courseInfo2, errors, function(error, result) {
+    
+    Meteor.call('studentInfoInsert', studentInfo, courseInfo2, errors, function(error, result) {
       if (error) {
         return throwError(error.reason);
       }
 
-      Router.go('tutorDetail', {_id: result._id});
+      Router.go('studentDetail', {_id: result._id});
     });
 
-  },
-
-  'click .studentCheck': function(event){
-    var check = {};
-    check.bool = event.currentTarget.value;
-    // console.log(check.bool);
-    Session.set(STUDENT, check)
-  },
-
-  'click #tutor-hour': function(event){
-    $("input[type='radio'][name='workload'][value='number']").prop("checked",true);
   },
 
   'click #add-icon': function(event){
@@ -111,13 +90,13 @@ Template.tutorPost.events({
     
     var text = '<div class="row courses" id="course'+number+'">'
           +'<div class="col-sm-3 col-xs-9">'
-          +'  <input type="text" class="form-control" id="tutor-course-number'+number+'" placeholder="i.e. Math109">'
+          +'  <input type="text" class="form-control" id="student-course-number'+number+'" placeholder="i.e. Math109">'
           +'</div>'
           +'<div class="col-sm-1 col-xs-3" id="direct-icon">'
           +'  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'
           +'</div>'
           +'<div class="controls col-sm-7 col-xs-11">'
-          +'  <input type="text" class="form-control" id="tutor-course-title'+number+'" placeholder="i.e. Mathematical Reasoning">'
+          +'  <input type="text" class="form-control" id="student-course-title'+number+'" placeholder="i.e. Mathematical Reasoning">'
           +'</div>'
           +'<div class="col-sm-1 col-xs-1 delete-icon">'
           +'  <a href="#" id="delete'+number+'" class="delete-course"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
@@ -131,7 +110,7 @@ Template.tutorPost.events({
   'click .delete-course': function(event){
     event.preventDefault();
     if (Session.get(COURSENO) === 1){
-      throwError("Please enter at least one course that you want to tutor for");
+      throwError("Please enter at least one course that you need help with");
       return;
     }
     var id = $(event.currentTarget).attr('id');

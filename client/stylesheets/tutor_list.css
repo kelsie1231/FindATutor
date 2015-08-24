@@ -5,7 +5,7 @@
 
 #tutorlist-head:after {
     content:"";
-    background: url("/05.jpg");
+    background: url("/03.jpg");
     background-size:cover;
     opacity: 0.2;
     top: 0;
@@ -21,7 +21,7 @@
 }
 
 .course-panel{ 
-    display:none; 
+    display:none;
     position:absolute; 
     z-index:1000; 
     margin-top: 4px;
@@ -32,9 +32,9 @@
     padding: 6px 6px;
 }
 
-#tutor-search{
+.search-title{
     display:inline-block; 
-    margin-left:30px;
+    margin-left:60px;
 }
 /*.list-panel{
     margin-bottom:-10000px;

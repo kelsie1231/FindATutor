@@ -7,7 +7,23 @@
 </template>
 
 <template name="error">
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-danger alert-float" role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+  </div>
+</template>
+
+
+<template name="successes">
+  <div class="errors">
+    {{#each successes}}
+      {{> success}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="success">
+  <div class="alert alert-success alert-float" role="alert">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     {{message}}
   </div>

@@ -1,0 +1,163 @@
+<template name="studentPost">
+  <form role="form" class="content form form-horizontal">
+    <h2>Post your student info</h2>
+    <div class="goback-icon-pull-right">
+      <a href="{{pathFor 'studentList'}}">
+        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> back &nbsp;
+      </a>
+    </div>
+    <hr/>
+
+    <div class="form-group {{errorClass 'name'}}">
+      <label for="student-name" class="col-sm-2 control-label">Name</label>
+      <div class="controls col-sm-9">
+          <input type="text" class="form-control" id="student-name" placeholder="Name /Nickname">
+          <span class="help-block">{{errorMessage 'name'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'sex'}}">
+        <label for="student-sex" class="col-sm-2 control-label">Sex</label>
+        <div class="controls col-sm-9">
+            <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="sex" value="Male"> Male
+               </label>
+             </div>
+             <div class="radio col-sm-3 col-xs-5">
+               <label>
+                  <input type="radio" name="sex" value="Female"> Female
+               </label>
+            </div>
+            <span class="help-block radio-error">{{errorMessage 'sex'}}</span>
+        </div>
+    </div>
+
+    <div class="form-group {{errorClass 'currentSchool'}}">
+      <label for="student-school" class="col-sm-3 control-label">Current school</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-school" placeholder="currently attended school">
+          <span class="help-block">{{errorMessage 'currentSchool'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="student-year" class="col-sm-3 control-label">Year</label>
+      <div class="controls col-sm-8">
+          <div class="col-md-4 col-sm-5 col-xs-6" id="select-level">
+            <select class="form-control">
+               <option>Undergraduate</option>
+               <option>Graduate</option>
+               <option>High School</option>
+            </select>
+          </div>
+          <div class="col-sm-4 col-xs-6" id="select-year">
+            <select class="form-control">
+               <option>Freshman</option>
+               <option>Sophomore</option>
+               <option>Junior</option>
+               <option>Senior</option>
+            </select>
+          </div>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'major'}}">
+      <label for="student-major" class="col-sm-3 control-label">Major</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-major" placeholder="major">
+          <span class="help-block">{{errorMessage 'major'}}</span>
+      </div>
+    </div>
+    
+    <div class="form-group {{errorClass 'email'}}">
+      <label for="student-email" class="col-sm-3 control-label">Email Address</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-email" placeholder="email address if different from your registered one" value="{{studentEmail}}">
+          <span class="help-block">{{errorMessage 'email'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'phone'}}">
+      <label for="student-phone" class="col-sm-3 control-label">Phone</label>
+      <div class="controls col-sm-8">
+          <input type="text" class="form-control" id="student-phone" placeholder="phone number">
+          <span class="help-block">{{errorMessage 'phone'}}</span>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="{{errorClass 'course'}}">
+        <label for="student-course-number1" class="col-sm-3 control-label">Need help course(s)</label>
+      </div>
+      <div class="controls col-sm-9">
+          
+          <div class="row course-title">
+            <div class="col-sm-9">
+              <div class="col-sm-4 col-xs-4">
+                <strong>Course No.</strong>
+              </div>
+              <div class="col-sm-1 col-xs-2">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              </div>
+              <div class="col-sm-offset-1 col-sm-6 col-xs-6">
+                <strong>Course Title</strong>
+              </div>
+             </div>
+          </div>
+
+          <div class="row courses" id="course1">
+            <div class="col-sm-3 col-xs-9">
+              <input type="text" class="form-control" id="student-course-number1" placeholder="i.e. Math109">
+            </div>
+            <div class="col-sm-1 col-xs-3" id="direct-icon">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </div>
+            <div class="controls col-sm-7 col-xs-11">
+              <input type="text" class="form-control" id="student-course-title1" placeholder="i.e. Mathematical Reasoning">
+            </div>
+            <div class="col-sm-1 col-xs-1 delete-icon">
+              <a href="#" id="delete1" class="delete-course"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+            </div>
+          </div>
+          
+          <a href="#" id="add-icon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add more</a>
+
+          <div class="{{errorClass 'course'}}"><span class="help-block">{{errorMessage 'course'}}</span></div>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'salary'}}">
+      <label for="student-salary" class="col-sm-3 control-label">Willing to pay</label>
+      <div class="controls col-sm-4">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" class="form-control" id="student-salary" placeholder="expected salary">
+          <div class="input-group-addon">/hr</div>
+        </div>
+        <span class="help-block">{{errorMessage 'salary'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group {{errorClass 'hour'}}">
+      <label for="student-hour" class="col-sm-3 control-label">Hours that need help</label>
+      <div class="controls col-sm-4">
+        <div class="input-group">
+          <input type="text" class="form-control" id="student-hour" placeholder="hours that need help">
+          <div class="input-group-addon">hrs /week</div>
+        </div>
+        <span class="help-block">{{errorMessage 'hour'}}</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="student-comment" class="col-sm-3 control-label">Comments</label>
+      <div class="controls col-sm-8">
+          <textarea rows="3" class="form-control" id="student-comment" placeholder="anything you wanna add"></textarea>
+      </div>
+    </div>
+
+    <center><input type="submit" value="Submit" class="btn btn-primary"/></center>
+  </form>
+</template>

@@ -1,0 +1,12 @@
+<template name="studentInfo">
+  {{#if studentPost}}
+    <div class="row">
+      {{#each studentPost}}
+        
+      {{/each}}
+    </div>
+  {{else}}
+    <h3>Sorry, we couldn't find any of your student info posts.</h3>
+    <h4>Post Your Student Info! &nbsp;<a class="btn btn-success" href="{{pathFor 'studentPost'}}">Post</a></h4>
+  {{/if}}
+</template>
